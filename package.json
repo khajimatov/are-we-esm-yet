@@ -1,0 +1,30 @@
+{
+  "name": "are-we-esm-yet",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build-html.ts && npx serve dist -l 3000",
+    "build": "node scripts/build-html.ts",
+    "preview": "npx serve dist -l 3000",
+    "crawl": "node scripts/crawl.ts",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "npm-high-impact": "^1.12.0",
+    "pacote": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@9.15.0"
+}
