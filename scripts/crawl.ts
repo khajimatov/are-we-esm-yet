@@ -46,6 +46,7 @@ if (!token) {
 }
 
 const BATCH_SIZE = 20;
+const PACKAGE_LIMIT = 5000;
 const now = new Date();
 const dateStr = now.toISOString().slice(0, 10);
 
@@ -178,18 +179,19 @@ function analyzePackument(result: Packument): Style | undefined {
 async function main(): Promise<void> {
   await fs.mkdir(dataDir, { recursive: true });
 
-  console.error("Fetching %d packages", npmHighImpact.length);
+  const packageList = npmHighImpact.slice(0, PACKAGE_LIMIT);
+  console.error("Fetching %d packages (top %d of %d)", packageList.length, PACKAGE_LIMIT, npmHighImpact.length);
 
   let slice = 0;
   while (true) {
-    const names = npmHighImpact.slice(slice * BATCH_SIZE, (slice + 1) * BATCH_SIZE);
+    const names = packageList.slice(slice * BATCH_SIZE, (slice + 1) * BATCH_SIZE);
     if (names.length === 0) break;
 
     console.error(
       "Fetching page: %d, collected: %d / %d",
       slice,
       slice * BATCH_SIZE,
-      npmHighImpact.length,
+      packageList.length,
     );
 
     const promises = names.map(async (name: string) => {
@@ -241,12 +243,12 @@ async function main(): Promise<void> {
     existingCsv = "date,total,esm,dual,faux,cjs\n";
   }
 
-  const hasDate = existingCsv.trim().split("\n").some((line) => line.startsWith(dateStr + ","));
+  const hasDate = existingCsv
+    .trim()
+    .split("\n")
+    .some((line) => line.startsWith(dateStr + ","));
   if (!hasDate) {
-    await fs.writeFile(
-      indexPath,
-      existingCsv + (existingCsv.endsWith("\n") ? "" : "\n") + newRow,
-    );
+    await fs.writeFile(indexPath, existingCsv + (existingCsv.endsWith("\n") ? "" : "\n") + newRow);
   }
 
   const files = await fs.readdir(dataDir);

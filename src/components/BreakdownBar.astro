@@ -1,0 +1,43 @@
+---
+interface Props {
+  pcts: { esm: number; dual: number; faux: number; cjs: number };
+  latest: { esm: number; dual: number; faux: number; cjs: number };
+}
+
+const { pcts, latest } = Astro.props;
+---
+<section>
+  <h2 class="m-0 mb-3 text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Breakdown</h2>
+  <div
+    class="flex h-6 rounded overflow-hidden bg-[var(--surface)]"
+    role="img"
+    aria-label={`Package breakdown: ESM ${Math.round(pcts.esm)}%, dual ${Math.round(pcts.dual)}%, faux ${Math.round(pcts.faux)}%, CJS ${Math.round(pcts.cjs)}%`}
+  >
+    <div
+      class="transition-[width] duration-300 ease-out"
+      style={`width: ${pcts.esm}%; background: var(--chart-esm)`}
+      title={`ESM: ${latest.esm} (${Math.round(pcts.esm)}%)`}
+    />
+    <div
+      class="transition-[width] duration-300 ease-out"
+      style={`width: ${pcts.dual}%; background: var(--chart-dual)`}
+      title={`dual: ${latest.dual} (${Math.round(pcts.dual)}%)`}
+    />
+    <div
+      class="transition-[width] duration-300 ease-out"
+      style={`width: ${pcts.faux}%; background: var(--chart-faux)`}
+      title={`faux: ${latest.faux} (${Math.round(pcts.faux)}%)`}
+    />
+    <div
+      class="transition-[width] duration-300 ease-out"
+      style={`width: ${pcts.cjs}%; background: var(--chart-cjs)`}
+      title={`CJS: ${latest.cjs} (${Math.round(pcts.cjs)}%)`}
+    />
+  </div>
+  <div class="flex flex-wrap gap-4 mt-2 text-xs text-[var(--muted)]">
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-esm)]" /> ESM {Math.round(pcts.esm)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-dual)]" /> dual {Math.round(pcts.dual)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-faux)]" /> faux {Math.round(pcts.faux)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-cjs)]" /> CJS {Math.round(pcts.cjs)}%</span>
+  </div>
+</section>

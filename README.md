@@ -29,16 +29,17 @@ Get a read-only token at [npmjs.com/settings/~/tokens](https://www.npmjs.com/set
 
 ## Scripts
 
-| Command        | Description                                               |
-| -------------- | --------------------------------------------------------- |
-| `pnpm dev`     | Build and start preview server                            |
-| `pnpm build`   | Build static site                                         |
-| `pnpm preview` | Preview production build                                  |
-| `pnpm crawl`   | Run ESM crawl (writes `data/*.json`, appends `index.csv`) |
-| `pnpm lint`    | Lint with oxlint                                           |
-| `pnpm lint:fix`| Lint and auto-fix                                          |
-| `pnpm fmt`     | Format with oxfmt                                          |
-| `pnpm fmt:check` | Check formatting without writing                         |
+| Command          | Description                                               |
+| ---------------- | --------------------------------------------------------- |
+| `pnpm dev`       | Start Astro dev server                                    |
+| `pnpm build`     | Build static site                                         |
+| `pnpm preview`   | Preview production build                                  |
+| `pnpm typecheck` | Type-check with tsgo                                      |
+| `pnpm crawl`     | Run ESM crawl (writes `data/*.json`, appends `index.csv`) |
+| `pnpm lint`      | Lint with oxlint                                          |
+| `pnpm lint:fix`  | Lint and auto-fix                                         |
+| `pnpm fmt`       | Format with oxfmt                                         |
+| `pnpm fmt:check` | Check formatting without writing                          |
 
 ## Deploy (Cloudflare Pages)
 
@@ -64,7 +65,9 @@ Manual trigger: Actions → Daily ESM Crawl → Run workflow.
 
 ## Tech
 
-- Single HTML file — No framework
-- [Chart.js](https://chart.js) — Trend chart
+- [Astro](https://astro.build) — Static site generator
+- [React](https://react.dev) — UI (chart island)
+- [Tailwind CSS](https://tailwindcss.com) v4 — Styling
+- [shadcn/ui](https://ui.shadcn.com) — Chart component (Recharts)
 - [npm-high-impact](https://github.com/wooorm/npm-high-impact) — Package list
 - [pacote](https://github.com/npm/pacote) — npm registry client

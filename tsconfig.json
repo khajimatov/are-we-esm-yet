@@ -1,16 +1,10 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["scripts/**/*"],
+  "include": ["src/**/*", "scripts/**/*", "pacote.d.ts"],
   "exclude": ["node_modules", "dist"]
 }

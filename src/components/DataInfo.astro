@@ -1,0 +1,24 @@
+---
+---
+<section id="data" class="mt-10 pt-8 border-t border-[var(--border)]">
+  <h2 class="m-0 mb-4 text-xs font-medium text-[var(--muted)] uppercase tracking-wider">How data is collected</h2>
+  <div class="text-[var(--muted)] text-sm leading-relaxed space-y-3">
+    <p class="m-0">
+      Data comes from a curated list of <strong class="text-[var(--foreground)]">5,000 high-impact npm packages</strong> from <a href="https://github.com/wooorm/npm-high-impact" rel="noopener noreferrer" class="text-[var(--accent)] underline underline-offset-2 hover:no-underline">npm-high-impact</a>. Each package’s latest version is fetched from the npm registry and classified by inspecting its <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">package.json</code>.
+    </p>
+    <p class="m-0">
+      Classification looks at <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">type</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">exports</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">module</code>, <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">main</code>, and file extensions (<code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">.mjs</code> / <code class="text-xs px-1.5 py-0.5 bg-[var(--surface)] rounded">.cjs</code>). Known spam and placeholder packages are excluded.
+    </p>
+    <p class="m-0">
+      The crawl runs <strong class="text-[var(--foreground)]">daily at 06:00 UTC</strong> via GitHub Actions. Historical data is bootstrapped from <a href="https://github.com/wooorm/npm-esm-vs-cjs" rel="noopener noreferrer" class="text-[var(--accent)] underline underline-offset-2 hover:no-underline">npm-esm-vs-cjs</a>.
+    </p>
+    <div class="mt-12 pt-6 border-t border-[var(--border)]">
+      <h3 class="m-0 mb-3 text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Data sources & credits</h3>
+      <ul class="m-0 list-none space-y-2 text-sm">
+        <li><a href="https://github.com/wooorm/npm-high-impact" rel="noopener noreferrer" class="text-[var(--accent)] underline underline-offset-2 hover:no-underline">npm-high-impact</a> — curated package list</li>
+        <li><a href="https://github.com/wooorm/npm-esm-vs-cjs" rel="noopener noreferrer" class="text-[var(--accent)] underline underline-offset-2 hover:no-underline">npm-esm-vs-cjs</a> — historical classification data</li>
+        <li><a href="https://www.npmjs.com" rel="noopener noreferrer" class="text-[var(--accent)] underline underline-offset-2 hover:no-underline">npm registry</a> — package metadata</li>
+      </ul>
+    </div>
+  </div>
+</section>

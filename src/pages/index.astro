@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import BreakdownBar from "../components/BreakdownBar.astro";
+import Glossary from "../components/Glossary.astro";
+import DataInfo from "../components/DataInfo.astro";
+import { TrendChart } from "../components/TrendChart";
+import { parseCsv, esmReadyPercent } from "../lib/csv";
+import fs from "node:fs";
+import path from "node:path";
+
+const csvPath = path.join(process.cwd(), "index.csv");
+const content = fs.readFileSync(csvPath, "utf8");
+const rows = parseCsv(content);
+
+const latest = rows.at(-1);
+const hasData = Boolean(latest);
+
+const pct = hasData ? esmReadyPercent(latest!) : 0;
+const pcts = hasData
+  ? {
+      esm: (latest!.esm / latest!.total) * 100,
+      dual: (latest!.dual / latest!.total) * 100,
+      faux: (latest!.faux / latest!.total) * 100,
+      cjs: (latest!.cjs / latest!.total) * 100,
+    }
+  : { esm: 0, dual: 0, faux: 0, cjs: 0 };
+
+const chartData = rows.map((r) => {
+  const total = r.total || 1;
+  const esmReady = r.esm + r.dual;
+  return {
+    date: r.date,
+    total: r.total,
+    esm: r.esm,
+    dual: r.dual,
+    faux: r.faux,
+    cjs: r.cjs,
+    esmReadyPct: (esmReady / total) * 100,
+  };
+});
+---
+<BaseLayout title="Are we ESM yet?">
+  <main id="main" class="max-w-5xl mx-auto py-10 px-5 pb-14">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <Hero pct={pct} latestDate={hasData ? latest!.date : "—"} hasData={hasData} />
+      <TrendChart client:load data={chartData} />
+    </div>
+    <div class="mt-12">
+      {hasData ? <BreakdownBar pcts={pcts} latest={latest!} /> : (
+        <section class="py-8 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-center">
+          <p class="m-0 text-[var(--muted)] text-sm">No data yet. Data will be available after the next refresh.</p>
+        </section>
+      )}
+      <DataInfo />
+      <Glossary />
+    </div>
+  </main>
+</BaseLayout>

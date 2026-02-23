@@ -1,0 +1,50 @@
+---
+interface Props {
+  pct: number;
+  latestDate: string;
+  hasData?: boolean;
+}
+
+const { pct, latestDate, hasData = true } = Astro.props;
+
+function statusMessage(pct: number): string {
+  if (pct >= 100) return "YES";
+  if (pct >= 90) return "ALMOST";
+  if (pct >= 75) return "GETTING THERE";
+  if (pct >= 50) return "NOT YET";
+  return "NO";
+}
+
+const message = hasData ? statusMessage(pct) : "—";
+const isYes = message === "YES";
+---
+<header class="text-left">
+  <h1 class="m-0 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+    Are we ESM yet?
+  </h1>
+  <p class="m-1 mb-6 text-[var(--muted)] text-sm">
+    ESM adoption across high-impact npm packages
+  </p>
+  <p class={`m-0 mb-6 text-6xl font-bold tracking-tighter ${isYes ? "text-[var(--accent)]" : "text-[var(--foreground)]"}`}>{message}</p>
+  <div class="flex flex-col items-start gap-0.5 py-5 px-6 rounded-lg bg-[var(--surface)] border border-[var(--border)] max-w-[280px]">
+    <span class="text-3xl font-semibold font-mono text-[var(--accent)]">{hasData ? `${pct}%` : "—"}</span>
+    <span class="text-[var(--muted)] text-sm">ESM-ready</span>
+  </div>
+  <p class="m-0 mt-3 text-[var(--muted)] text-xs">Updated {latestDate}</p>
+  <p class="m-0 mt-1 text-[var(--muted)] text-xs">
+    Next refresh: <span id="next-refresh">daily at 06:00 UTC</span>
+  </p>
+</header>
+<script>
+  (function () {
+    const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto", style: "short" });
+    const now = new Date();
+    const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 6, 0, 0));
+    if (next <= now) next.setUTCDate(next.getUTCDate() + 1);
+    const ms = next.getTime() - now.getTime();
+    const hours = Math.round(ms / (1000 * 60 * 60));
+    const minutes = Math.round(ms / (1000 * 60));
+    const el = document.getElementById("next-refresh");
+    if (el) el.textContent = hours >= 24 ? rtf.format(Math.floor(hours / 24), "day") : (minutes < 60 ? rtf.format(minutes, "minute") : rtf.format(hours, "hour"));
+  })();
+</script>
