@@ -24,26 +24,25 @@ const chartConfig = {
 export function TrendChart({ data }: TrendChartProps) {
   if (data.length === 0) {
     return (
-      <section>
-        <h2 className="m-0 mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+      <section className="flex flex-col gap-3">
+        <h2 className="m-0 text-xs font-medium text-muted-foreground uppercase tracking-wider">
           Trend
         </h2>
-        <div className="flex min-h-[240px] items-center justify-center rounded-lg border border-border bg-muted/30">
+        <div className="flex min-h-[240px] items-center justify-center border border-border bg-muted/30">
           <p className="text-sm text-muted-foreground">No trend data yet</p>
         </div>
-        <p className="m-0 mt-2 text-center text-xs text-muted-foreground">
-          ESM-ready = ESM + dual packages
+        <p className="m-0 text-center text-xs text-muted-foreground">
+          ESM-ready = ESM-only + dual packages
         </p>
       </section>
     );
   }
-
   return (
-    <section>
-      <h2 className="m-0 mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+    <section className="flex flex-col gap-3">
+      <h2 className="m-0 text-xs font-medium text-muted-foreground uppercase tracking-wider">
         Trend
       </h2>
-      <div className="mb-2 overflow-x-auto">
+      <div className="overflow-x-auto">
         <ChartContainer config={chartConfig} className="min-h-[240px] w-full">
           <AreaChart data={data} margin={{ left: 0, right: 0 }}>
             <CartesianGrid vertical={false} />
@@ -54,12 +53,14 @@ export function TrendChart({ data }: TrendChartProps) {
               tickFormatter={(value: string) => (value ? value.slice(0, 7) : value)}
             />
             <YAxis
+              width={40}
               tickLine={false}
               axisLine={false}
               domain={[0, 100]}
               tickFormatter={(value: number) => `${value}%`}
             />
             <ChartTooltip
+              position={{ x: 20, y: 20 }}
               content={({ active, payload, label }) => {
                 if (!active || !payload?.length || !label) return null;
                 const d = new Date(label + "T00:00:00");
@@ -75,8 +76,8 @@ export function TrendChart({ data }: TrendChartProps) {
                 const esmReady = (row?.esm ?? 0) + (row?.dual ?? 0);
                 const esmReadyPct = Math.round(row?.esmReadyPct ?? 0);
                 return (
-                  <div className="border-border/50 bg-background min-w-[11rem] rounded-lg border px-3 py-2.5 text-xs shadow-xl">
-                    <div className="mb-2 border-b border-border/50 pb-2">
+                  <div className="border-border/50 bg-background min-w-fit border px-3 py-2.5 text-xs shadow-xl flex flex-col gap-2">
+                    <div className="border-b border-border/50 pb-2">
                       <div className="text-muted-foreground text-[10px] uppercase tracking-wider">
                         Date
                       </div>
@@ -86,14 +87,14 @@ export function TrendChart({ data }: TrendChartProps) {
                       <span className="text-muted-foreground">ESM-ready</span>
                       <span className="font-mono font-medium tabular-nums">{esmReadyPct}%</span>
                     </div>
-                    <div className="mt-2 border-t border-border/50 pt-2 flex justify-between text-muted-foreground">
+                    <div className="border-t border-border/50 pt-2 flex justify-between text-muted-foreground">
                       <span>Total</span>
                       <span className="font-mono font-medium tabular-nums">
                         {total.toLocaleString()} packages
                       </span>
                     </div>
-                    <div className="mt-1 flex justify-between text-muted-foreground">
-                      <span>ESM + dual</span>
+                    <div className="flex gap-2 justify-between text-muted-foreground">
+                      <span>ESM-ready</span>
                       <span className="font-mono font-medium tabular-nums">
                         {esmReady.toLocaleString()} packages
                       </span>
@@ -112,8 +113,8 @@ export function TrendChart({ data }: TrendChartProps) {
           </AreaChart>
         </ChartContainer>
       </div>
-      <p className="m-0 mt-2 text-center text-xs text-muted-foreground">
-        ESM-ready = ESM + dual packages
+      <p className="m-0 text-center text-xs text-muted-foreground">
+        ESM-ready = ESM-only + dual packages
       </p>
     </section>
   );

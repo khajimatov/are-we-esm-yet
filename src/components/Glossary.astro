@@ -1,27 +1,27 @@
-<section id="glossary" class="mt-10 pt-8 border-t border-border">
-  <h2 class="m-0 mb-4 text-xs font-medium text-(--muted) uppercase tracking-wider">Glossary</h2>
-  <dl class="m-0 grid gap-4">
-    <div class="grid grid-cols-[3rem_1fr] gap-3 items-start">
-      <dt class="m-0 font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted rounded">ESM</code></dt>
-      <dd class="m-0 text-(--muted) text-sm leading-relaxed">
-        ECMAScript Modules. <code>type: 'module'</code> or <code>.mjs</code> entry. Native <code>import</code>/<code>export</code>.
+<section id="glossary" class="pt-8 border-t border-border">
+  <h2 class=" mb-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Glossary</h2>
+  <dl class=" flex flex-col gap-4">
+    <div class="flex items-center gap-2 flex-wrap">
+      <dt class="font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">ESM-only</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed">
+        Packages that only provide ESM (no CJS). <code>type: 'module'</code> or <code>.mjs</code> entry. Native <code>import</code>/<code>export</code>.
       </dd>
     </div>
-    <div class="grid grid-cols-[3rem_1fr] gap-3 items-start">
-      <dt class="m-0 font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted rounded">dual</code></dt>
-      <dd class="m-0 text-(--muted) text-sm leading-relaxed">
+    <div class="flex items-center gap-2 flex-wrap">
+      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">dual</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed">
         Both ESM and CJS via <code>exports</code>. Works in either environment.
       </dd>
     </div>
-    <div class="grid grid-cols-[3rem_1fr] gap-3 items-start">
-      <dt class="m-0 font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted rounded">faux</code></dt>
-      <dd class="m-0 text-(--muted) text-sm leading-relaxed">
+    <div class="flex items-center gap-2 flex-wrap">
+      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">faux</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed">
         Legacy "module" field. Not true Node ESM; no <code>type: 'module'</code> or proper <code>exports</code>.
       </dd>
     </div>
-    <div class="grid grid-cols-[3rem_1fr] gap-3 items-start">
-      <dt class="m-0 font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted rounded">CJS</code></dt>
-      <dd class="m-0 text-(--muted) text-sm leading-relaxed">
+    <div class="flex items-center gap-2 flex-wrap">
+      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">CJS</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed">
         CommonJS. Uses <code>require()</code>/<code>module.exports</code>.
       </dd>
     </div>

@@ -6,17 +6,17 @@ interface Props {
 
 const { pcts, latest } = Astro.props;
 ---
-<section>
-  <h2 class="m-0 mb-3 text-xs font-medium text-(--muted) uppercase tracking-wider">Breakdown</h2>
+<section class="flex flex-col gap-2">
+  <h2 class="m-0 text-xs font-medium text-muted-foreground uppercase tracking-wider">Breakdown</h2>
   <div
-    class="flex h-6 rounded overflow-hidden bg-muted"
+    class="flex h-6 overflow-hidden bg-muted"
     role="img"
-    aria-label={`Package breakdown: ESM ${Math.round(pcts.esm)}%, dual ${Math.round(pcts.dual)}%, faux ${Math.round(pcts.faux)}%, CJS ${Math.round(pcts.cjs)}%`}
+    aria-label={`Package breakdown: ESM-only ${Math.round(pcts.esm)}%, dual ${Math.round(pcts.dual)}%, faux ${Math.round(pcts.faux)}%, CJS ${Math.round(pcts.cjs)}%`}
   >
     <div
       class="transition-[width] duration-300 ease-out"
       style={`width: ${pcts.esm}%; background: var(--chart-esm)`}
-      title={`ESM: ${latest.esm} (${Math.round(pcts.esm)}%)`}
+      title={`ESM-only: ${latest.esm} (${Math.round(pcts.esm)}%)`}
     />
     <div
       class="transition-[width] duration-300 ease-out"
@@ -34,10 +34,10 @@ const { pcts, latest } = Astro.props;
       title={`CJS: ${latest.cjs} (${Math.round(pcts.cjs)}%)`}
     />
   </div>
-  <div class="flex flex-wrap gap-4 mt-2 text-xs text-(--muted)">
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-esm)" /> ESM {Math.round(pcts.esm)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-dual)" /> dual {Math.round(pcts.dual)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-faux)" /> faux {Math.round(pcts.faux)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-cjs)" /> CJS {Math.round(pcts.cjs)}%</span>
+  <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-chart-esm" /> ESM-only {Math.round(pcts.esm)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-chart-dual" /> dual {Math.round(pcts.dual)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 bg-chart-faux" /> faux {Math.round(pcts.faux)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2  bg-chart-cjs" /> CJS {Math.round(pcts.cjs)}%</span>
   </div>
 </section>

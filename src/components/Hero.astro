@@ -20,21 +20,23 @@ function statusMessage(pct: number): string {
 const message = hasData ? statusMessage(pct) : "—";
 const isYes = message === "YES";
 ---
-<header class="text-left">
+<header class="text-left flex flex-col gap-6">
   <h1 class="text-3xl font-semibold tracking-tight">
     Are We ESM Yet?
   </h1>
-  <p class={cn("m-0 mb-6 text-9xl font-bold tracking-tighter", isYes && "text-(--accent)")}>{message}</p>
-  <div class="flex flex-col items-start gap-0.5 rounded-lg max-w-[280px]">
+  <p class={cn("m-0 text-9xl font-bold tracking-tighter", isYes && "text-accent")}>{message}</p>
+  <div class="flex flex-col max-w-[280px]">
     <span class="text-3xl font-semibold">{hasData ? `${pct}%` : "—"}</span>
-    <span class="text-(--muted) text-sm">of packages are ESM-ready though</span>
+    <span class="text-muted-foreground text-sm">of packages are ESM-ready though</span>
   </div>
-  <p class="m-0 mt-3 text-(--muted) text-xs">
-    Updated: <span id="date-updated" data-date={hasData ? latestDate : undefined}>{latestDate}</span>
-  </p>
-  <p class="m-0 mt-1 text-(--muted) text-xs">
-    Next refresh: <span id="next-refresh">daily at 06:00 UTC</span>
-  </p>
+  <div class="flex flex-col gap-1">
+    <p class="m-0 text-muted-foreground text-xs">
+      Updated: <span id="date-updated" data-date={hasData ? latestDate : undefined}>{latestDate}</span>
+    </p>
+    <p class="m-0 text-muted-foreground text-xs">
+      Next refresh: <span id="next-refresh">daily at 06:00 UTC</span>
+    </p>
+  </div>
 </header>
 <script>
   (function () {

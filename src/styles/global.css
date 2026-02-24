@@ -124,8 +124,13 @@ body {
   --color-foreground: var(--foreground);
   --color-muted: var(--surface);
   --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
   --color-border: var(--border);
   --color-chart-1: var(--chart-1);
+  --color-chart-esm: var(--chart-esm);
+  --color-chart-dual: var(--chart-dual);
+  --color-chart-faux: var(--chart-faux);
+  --color-chart-cjs: var(--chart-cjs);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
