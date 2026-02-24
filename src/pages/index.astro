@@ -40,7 +40,7 @@ const chartData = rows.map((r) => {
   };
 });
 ---
-<BaseLayout title="Are we ESM yet?">
+<BaseLayout title="Are We ESM Yet?">
   <main id="main" class="max-w-5xl mx-auto py-10 px-5 pb-14">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <Hero pct={pct} latestDate={hasData ? latest!.date : "—"} hasData={hasData} />
@@ -48,8 +48,8 @@ const chartData = rows.map((r) => {
     </div>
     <div class="mt-12">
       {hasData ? <BreakdownBar pcts={pcts} latest={latest!} /> : (
-        <section class="py-8 rounded-lg bg-[var(--surface)] border border-[var(--border)] text-center">
-          <p class="m-0 text-[var(--muted)] text-sm">No data yet. Data will be available after the next refresh.</p>
+        <section class="py-8 rounded-lg bg-muted border border-border text-center">
+          <p class="m-0 text-(--muted) text-sm">No data yet. Data will be available after the next refresh.</p>
         </section>
       )}
       <DataInfo />

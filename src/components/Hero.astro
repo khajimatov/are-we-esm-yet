@@ -1,4 +1,6 @@
 ---
+import { cn } from "../lib/utils";
+
 interface Props {
   pct: number;
   latestDate: string;
@@ -19,24 +21,36 @@ const message = hasData ? statusMessage(pct) : "—";
 const isYes = message === "YES";
 ---
 <header class="text-left">
-  <h1 class="m-0 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-    Are we ESM yet?
+  <h1 class="text-3xl font-semibold tracking-tight">
+    Are We ESM Yet?
   </h1>
-  <p class="m-1 mb-6 text-[var(--muted)] text-sm">
-    ESM adoption across high-impact npm packages
-  </p>
-  <p class={`m-0 mb-6 text-6xl font-bold tracking-tighter ${isYes ? "text-[var(--accent)]" : "text-[var(--foreground)]"}`}>{message}</p>
-  <div class="flex flex-col items-start gap-0.5 py-5 px-6 rounded-lg bg-[var(--surface)] border border-[var(--border)] max-w-[280px]">
-    <span class="text-3xl font-semibold font-mono text-[var(--accent)]">{hasData ? `${pct}%` : "—"}</span>
-    <span class="text-[var(--muted)] text-sm">ESM-ready</span>
+  <p class={cn("m-0 mb-6 text-9xl font-bold tracking-tighter", isYes && "text-(--accent)")}>{message}</p>
+  <div class="flex flex-col items-start gap-0.5 rounded-lg max-w-[280px]">
+    <span class="text-3xl font-semibold">{hasData ? `${pct}%` : "—"}</span>
+    <span class="text-(--muted) text-sm">of packages are ESM-ready though</span>
   </div>
-  <p class="m-0 mt-3 text-[var(--muted)] text-xs">Updated {latestDate}</p>
-  <p class="m-0 mt-1 text-[var(--muted)] text-xs">
+  <p class="m-0 mt-3 text-(--muted) text-xs">
+    Updated: <span id="date-updated" data-date={hasData ? latestDate : undefined}>{latestDate}</span>
+  </p>
+  <p class="m-0 mt-1 text-(--muted) text-xs">
     Next refresh: <span id="next-refresh">daily at 06:00 UTC</span>
   </p>
 </header>
 <script>
   (function () {
+    const dateEl = document.getElementById("date-updated");
+    const rawDate = dateEl?.getAttribute("data-date");
+    if (dateEl && rawDate) {
+      const d = new Date(rawDate + "T00:00:00");
+      if (!isNaN(d.getTime())) {
+        dateEl.textContent = d.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+      }
+    }
+
     const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto", style: "short" });
     const now = new Date();
     const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 6, 0, 0));

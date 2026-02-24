@@ -1,4 +1,4 @@
-# Are we ESM yet?
+# Are We ESM Yet?
 
 ESM adoption dashboard for the JavaScript/TypeScript ecosystem. Tracks how high-impact npm packages are progressing from CommonJS toward ECMAScript Modules.
 

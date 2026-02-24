@@ -31,6 +31,9 @@ export function TrendChart({ data }: TrendChartProps) {
         <div className="flex min-h-[240px] items-center justify-center rounded-lg border border-border bg-muted/30">
           <p className="text-sm text-muted-foreground">No trend data yet</p>
         </div>
+        <p className="m-0 mt-2 text-center text-xs text-muted-foreground">
+          ESM-ready = ESM + dual packages
+        </p>
       </section>
     );
   }
@@ -109,6 +112,9 @@ export function TrendChart({ data }: TrendChartProps) {
           </AreaChart>
         </ChartContainer>
       </div>
+      <p className="m-0 mt-2 text-center text-xs text-muted-foreground">
+        ESM-ready = ESM + dual packages
+      </p>
     </section>
   );
 }

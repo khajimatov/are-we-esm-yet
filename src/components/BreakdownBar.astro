@@ -7,9 +7,9 @@ interface Props {
 const { pcts, latest } = Astro.props;
 ---
 <section>
-  <h2 class="m-0 mb-3 text-xs font-medium text-[var(--muted)] uppercase tracking-wider">Breakdown</h2>
+  <h2 class="m-0 mb-3 text-xs font-medium text-(--muted) uppercase tracking-wider">Breakdown</h2>
   <div
-    class="flex h-6 rounded overflow-hidden bg-[var(--surface)]"
+    class="flex h-6 rounded overflow-hidden bg-muted"
     role="img"
     aria-label={`Package breakdown: ESM ${Math.round(pcts.esm)}%, dual ${Math.round(pcts.dual)}%, faux ${Math.round(pcts.faux)}%, CJS ${Math.round(pcts.cjs)}%`}
   >
@@ -34,10 +34,10 @@ const { pcts, latest } = Astro.props;
       title={`CJS: ${latest.cjs} (${Math.round(pcts.cjs)}%)`}
     />
   </div>
-  <div class="flex flex-wrap gap-4 mt-2 text-xs text-[var(--muted)]">
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-esm)]" /> ESM {Math.round(pcts.esm)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-dual)]" /> dual {Math.round(pcts.dual)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-faux)]" /> faux {Math.round(pcts.faux)}%</span>
-    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[var(--chart-cjs)]" /> CJS {Math.round(pcts.cjs)}%</span>
+  <div class="flex flex-wrap gap-4 mt-2 text-xs text-(--muted)">
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-esm)" /> ESM {Math.round(pcts.esm)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-dual)" /> dual {Math.round(pcts.dual)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-faux)" /> faux {Math.round(pcts.faux)}%</span>
+    <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-(--chart-cjs)" /> CJS {Math.round(pcts.cjs)}%</span>
   </div>
 </section>
