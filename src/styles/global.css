@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@fontsource-variable/jetbrains-mono";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -106,13 +107,14 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--foreground);
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: "JetBrains Mono Variable", ui-monospace, monospace;
   font-size: 15px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 @theme inline {
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
   --radius-lg: calc(var(--radius) + 2px);
