@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { title, description = "ESM adoption dashboard for the JavaScript/TypeScript ecosystem" } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname || "/", Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +19,25 @@ const { title, description = "ESM adoption dashboard for the JavaScript/TypeScri
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Are We ESM Yet?" />
+    <meta property="og:locale" content="en" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Are We ESM Yet?",
+      "url": "https://areweesmyet.com",
+      "description": description
+    })} />
   </head>
   <body>
     <a href="#main" class="sr-only">

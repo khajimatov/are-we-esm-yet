@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://areweesmyet.com/sitemap-index.xml

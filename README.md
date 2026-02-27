@@ -49,14 +49,14 @@ Get a read-only token at [npmjs.com/settings/~/tokens](https://www.npmjs.com/set
 4. **Environment:** None required for static build
 5. Add custom domain `areweesmyet.com` in project settings
 
-## Daily Crawl
+## Weekly Crawl
 
-A GitHub Action runs the crawl daily at 06:00 UTC. To enable:
+A GitHub Action runs the crawl weekly on Mondays at 06:00 UTC. To enable:
 
 1. Add `NPM_TOKEN` to repo secrets (Settings → Secrets and variables → Actions)
 2. Push to trigger deploy; the crawl commits `data/*.json` and `index.csv` on success
 
-Manual trigger: Actions → Daily ESM Crawl → Run workflow.
+Manual trigger: Actions → Weekly ESM Crawl → Run workflow.
 
 ## Data
 
