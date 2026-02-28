@@ -31,7 +31,7 @@ const isYes = message === "YES";
   </div>
   <div class="flex flex-col gap-1">
     <p class="m-0 text-muted-foreground text-xs">
-      Last updated: <span id="date-updated" data-date={hasData ? latestDate : undefined}>{latestDate}</span>
+      Updated: <span id="date-updated" data-date={hasData ? latestDate : undefined}>{latestDate}</span>
     </p>
     <p class="m-0 text-muted-foreground text-xs">
       Next refresh: <span id="next-refresh">Mondays at 06:00 UTC</span>
@@ -53,7 +53,7 @@ const isYes = message === "YES";
       }
     }
 
-    const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "auto", style: "short" });
+    const rtf = new Intl.RelativeTimeFormat(undefined, { numeric: "always", style: "short" });
     const now = new Date();
     const day = now.getUTCDay();
     const pastSix = now.getUTCHours() >= 6;
@@ -63,6 +63,15 @@ const isYes = message === "YES";
     const hours = Math.round(ms / (1000 * 60 * 60));
     const minutes = Math.round(ms / (1000 * 60));
     const el = document.getElementById("next-refresh");
-    if (el) el.textContent = hours >= 24 ? rtf.format(Math.floor(hours / 24), "day") : (minutes < 60 ? rtf.format(minutes, "minute") : rtf.format(hours, "hour"));
+    if (el) {
+      const dayName = next.toLocaleDateString(undefined, { weekday: "long", timeZone: "UTC" });
+      if (hours >= 24) {
+        const days = Math.floor(hours / 24);
+        el.textContent = `${dayName} (${rtf.format(days, "day")})`;
+      } else {
+        const rel = minutes < 60 ? rtf.format(minutes, "minute") : rtf.format(hours, "hour");
+        el.textContent = `${dayName} (${rel})`;
+      }
+    }
   })();
 </script>

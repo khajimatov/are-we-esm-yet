@@ -1,5 +1,3 @@
-"use client";
-
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart";
 
@@ -60,7 +58,6 @@ export function TrendChart({ data }: TrendChartProps) {
               tickFormatter={(value: number) => `${value}%`}
             />
             <ChartTooltip
-              // position={{ x: 20, y: 20 }}
               content={({ active, payload, label }) => {
                 if (!active || !payload?.length || !label) return null;
                 const d = new Date(label + "T00:00:00");
@@ -85,7 +82,9 @@ export function TrendChart({ data }: TrendChartProps) {
                     </div>
                     <div className="flex items-center justify-between gap-4">
                       <span className="text-muted-foreground">ESM-ready</span>
-                      <span className="font-mono font-medium tabular-nums">{esmReadyPct}% ({esmReady.toLocaleString()} packages)</span>
+                      <span className="font-mono font-medium tabular-nums">
+                        {esmReadyPct}% ({esmReady.toLocaleString()} packages)
+                      </span>
                     </div>
                     <div className="border-t border-border/50 pt-2 flex justify-between text-muted-foreground">
                       <span>Total</span>
@@ -103,6 +102,7 @@ export function TrendChart({ data }: TrendChartProps) {
               stroke="var(--color-esmReadyPct)"
               fill="var(--color-esmReadyPct)"
               fillOpacity={0.4}
+              isAnimationActive={false}
             />
           </AreaChart>
         </ChartContainer>
