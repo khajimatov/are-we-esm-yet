@@ -8,6 +8,7 @@ interface Props {
 
 const { title, description = "ESM adoption dashboard for the JavaScript/TypeScript ecosystem" } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname || "/", Astro.site).href;
+const ogImageUrl = new URL("/og.png", Astro.site).href;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +29,13 @@ const canonicalUrl = new URL(Astro.url.pathname || "/", Astro.site).href;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Are We ESM Yet?" />
     <meta property="og:locale" content="en" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
