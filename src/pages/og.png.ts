@@ -73,8 +73,20 @@ export const GET: APIRoute = async () => {
             props: {
               style: {
                 display: "flex",
+                fontSize: 24,
+                color: "#a3a3a3",
+                marginTop: 8,
+              },
+              children: "ESM adoption dashboard",
+            },
+          },
+          {
+            type: "div",
+            props: {
+              style: {
+                display: "flex",
                 flexGrow: 1,
-                marginTop: 30,
+                marginTop: 24,
                 marginBottom: 20,
               },
               children: {
@@ -101,18 +113,6 @@ export const GET: APIRoute = async () => {
                   ],
                 },
               },
-            },
-          },
-          {
-            type: "div",
-            props: {
-              style: {
-                display: "flex",
-                justifyContent: "center",
-                fontSize: 20,
-                color: "#737373",
-              },
-              children: "areweesmyet.com",
             },
           },
         ],
