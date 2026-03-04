@@ -1,4 +1,5 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { useId } from "react";
 import { ChartContainer, ChartTooltip, type ChartConfig } from "@/components/ui/chart";
 
 export interface ChartDataPoint {
@@ -20,6 +21,9 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function TrendChart({ data }: TrendChartProps) {
+  const a11yId = useId().replace(/:/g, "");
+  const titleId = `trend-chart-title-${a11yId}`;
+  const descriptionId = `trend-chart-description-${a11yId}`;
   if (data.length === 0) {
     return (
       <section className="flex flex-col gap-3">
@@ -35,13 +39,40 @@ export function TrendChart({ data }: TrendChartProps) {
       </section>
     );
   }
+  const latestPoint = data[data.length - 1];
+  const latestDate = latestPoint?.date;
+  const latestEsmReadyPct = Math.round(latestPoint?.esmReadyPct ?? 0);
+  const latestEsmReadyCount = (latestPoint?.esm ?? 0) + (latestPoint?.dual ?? 0);
+  const latestTotal = latestPoint?.total ?? 0;
   return (
-    <section className="flex flex-col gap-3">
-      <h2 className="m-0 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+    <section className="flex flex-col gap-3" aria-labelledby={titleId}>
+      <h2 id={titleId} className="m-0 text-xs font-medium text-muted-foreground uppercase tracking-wider">
         Trend
       </h2>
+      <p id={descriptionId} className="sr-only">
+        Area chart of ESM-ready package percentage over time. Latest point: {latestDate},{" "}
+        {latestEsmReadyPct}% ESM-ready, which is {latestEsmReadyCount.toLocaleString()} of{" "}
+        {latestTotal.toLocaleString()} total packages.
+      </p>
+      <ul className="sr-only" aria-label="Trend data points">
+        {data.map((point) => {
+          const esmReadyCount = point.esm + point.dual;
+          return (
+            <li key={point.date}>
+              {point.date}: {Math.round(point.esmReadyPct)}% ESM-ready ({esmReadyCount.toLocaleString()} of{" "}
+              {point.total.toLocaleString()} packages)
+            </li>
+          );
+        })}
+      </ul>
       <div className="overflow-x-auto">
-        <ChartContainer config={chartConfig} className="min-h-[240px] w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="min-h-[240px] w-full"
+          role="img"
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+        >
           <AreaChart data={data} margin={{ left: 0, right: 0 }}>
             <CartesianGrid vertical={false} />
             <XAxis

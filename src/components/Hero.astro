@@ -24,7 +24,7 @@ const isYes = message === "YES";
   <h1 class="text-3xl font-semibold tracking-tight">
     Are We ESM Yet?
   </h1>
-  <p class={cn("m-0 text-9xl font-bold tracking-tighter", isYes && "text-accent")}>{message}</p>
+  <p class={cn("m-0 text-7xl sm:text-8xl lg:text-9xl font-bold tracking-tighter", isYes && "text-accent")}>{message}</p>
   <div class="flex flex-col max-w-[280px]">
     <span class="text-3xl font-semibold">{hasData ? `${pct}%` : "—"}</span>
     <span class="text-muted-foreground text-sm">of packages are ESM-ready though</span>
