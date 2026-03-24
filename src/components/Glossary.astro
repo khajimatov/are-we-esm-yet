@@ -2,26 +2,26 @@
   <h2 class=" mb-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Glossary</h2>
   <dl class=" flex flex-col gap-4">
     <div class="flex items-center gap-2 flex-wrap">
-      <dt class="font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">ESM-only</code></dt>
-      <dd class=" text-muted-foreground text-sm leading-relaxed">
+      <dt id="term-esm-only" class="font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">ESM-only</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed" aria-labelledby="term-esm-only">
         Packages that only provide ESM (no CJS). <code>type: 'module'</code> or <code>.mjs</code> entry. Native <code>import</code>/<code>export</code>.
       </dd>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">dual</code></dt>
-      <dd class=" text-muted-foreground text-sm leading-relaxed">
+      <dt id="term-dual" class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">dual</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed" aria-labelledby="term-dual">
         Both ESM and CJS via <code>exports</code>. Works in either environment.
       </dd>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">faux</code></dt>
-      <dd class=" text-muted-foreground text-sm leading-relaxed">
+      <dt id="term-faux" class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">faux</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed" aria-labelledby="term-faux">
         Legacy "module" field. Not true Node ESM; no <code>type: 'module'</code> or proper <code>exports</code>.
       </dd>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <dt class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">CJS</code></dt>
-      <dd class=" text-muted-foreground text-sm leading-relaxed">
+      <dt id="term-cjs" class=" font-medium"><code class="text-xs px-1.5 py-0.5 bg-muted">CJS</code></dt>
+      <dd class=" text-muted-foreground text-sm leading-relaxed" aria-labelledby="term-cjs">
         CommonJS. Uses <code>require()</code>/<code>module.exports</code>.
       </dd>
     </div>

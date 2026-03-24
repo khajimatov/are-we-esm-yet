@@ -73,7 +73,7 @@ export function TrendChart({ data }: TrendChartProps) {
           aria-labelledby={titleId}
           aria-describedby={descriptionId}
         >
-          <AreaChart data={data} margin={{ left: 0, right: 0 }}>
+          <AreaChart data={data} margin={{ left: 0, right: 0 }} aria-hidden="true">
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="date"
