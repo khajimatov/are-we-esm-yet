@@ -16,25 +16,21 @@ const { pcts, latest } = Astro.props;
     <div
       class="transition-[width] duration-300 ease-out"
       style={`width: ${pcts.esm}%; background: var(--chart-esm)`}
-      aria-label={`ESM-only: ${latest.esm} (${Math.round(pcts.esm)}%)`}
       title={`ESM-only: ${latest.esm} (${Math.round(pcts.esm)}%)`}
     />
     <div
       class="transition-[width] duration-300 ease-out"
       style={`width: ${pcts.dual}%; background: var(--chart-dual)`}
-      aria-label={`dual: ${latest.dual} (${Math.round(pcts.dual)}%)`}
       title={`dual: ${latest.dual} (${Math.round(pcts.dual)}%)`}
     />
     <div
       class="transition-[width] duration-300 ease-out"
       style={`width: ${pcts.faux}%; background: var(--chart-faux)`}
-      aria-label={`faux: ${latest.faux} (${Math.round(pcts.faux)}%)`}
       title={`faux: ${latest.faux} (${Math.round(pcts.faux)}%)`}
     />
     <div
       class="transition-[width] duration-300 ease-out"
       style={`width: ${pcts.cjs}%; background: var(--chart-cjs)`}
-      aria-label={`CJS: ${latest.cjs} (${Math.round(pcts.cjs)}%)`}
       title={`CJS: ${latest.cjs} (${Math.round(pcts.cjs)}%)`}
     />
   </div>
