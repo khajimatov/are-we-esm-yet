@@ -4773,7 +4773,7 @@
   "@angular-eslint/template-parser": "cjs",
   "@rspack/binding": "cjs",
   "react-smooth": "faux",
-  "jotai": "dual",
+  "jotai": "esm",
   "react-reconciler": "cjs",
   "titleize": "esm",
   "unimport": "esm",
