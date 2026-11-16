@@ -3912,7 +3912,7 @@
   "uncrypto": "dual",
   "@graphql-tools/prisma-loader": "dual",
   "stream-json": "esm",
-  "fontkit": "dual",
+  "fontkit": "esm",
   "json-to-pretty-yaml": "cjs",
   "@wdio/logger": "dual",
   "@graphql-codegen/gql-tag-operations": "dual",
